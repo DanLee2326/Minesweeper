@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Board.h"
+#include "Menu.h"
+#include "Flag.h"
 
 int main(void)
 {
@@ -10,8 +12,11 @@ int main(void)
 	const int preset1 = 9;
 	const int preset2 = 16;
 	const int preset3 = 25;
+	vector<Flag> flags;
 
-	Board grid(preset1, "number");
+	Menu menu(window.getSize().x, window.getSize().y);
+
+	/*Board grid(preset1, "number");
 	for (int x = 0; x < preset1; x++)
 	{
 		for (int y = 0; y < preset1; y++)
@@ -35,19 +40,6 @@ int main(void)
 			coverGrid.getCell(x, y)->setOutlineThickness(2.f);
 			coverGrid.getCell(x, y)->setOutlineColor(sf::Color::Black);
 		}
-	}
-
-	/*CoverBoard coverGrid2[preset2][preset2];
-	for (int x = 0; x < preset2; x++)
-	{
-		for (int y = 0; y < preset2; y++)
-		{
-			coverGrid2[x][y].setSize(sf::Vector2f(sizeX, sizeY));
-			coverGrid2[x][y].setPosition(x * sizeX + 100, (y * sizeY) + 100);
-			coverGrid2[x][y].setFillColor(sf::Color::White);
-			coverGrid2[x][y].setOutlineThickness(2.f);
-			coverGrid2[x][y].setOutlineColor(sf::Color::Black);
-		}
 	}*/
 	
 	sf::Event event;
@@ -61,10 +53,22 @@ int main(void)
 			}
 			
 		}
+		
+		//else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && 
+		//	sf::Mouse::getPosition(window).x < window.getSize().x && sf::Mouse::getPosition(window).x > 0 && 
+		//	sf::Mouse::getPosition(window).y < window.getSize().y && sf::Mouse::getPosition(window).y > 0) 
+		//{
+		//	//flag operations
+		//	int cellX = sf::Mouse::getPosition(window).x / cellWidth;
+		//	int cellY = sf::Mouse::getPosition(window).y / cellHeight;
+		//	if (flags.getCell(cellX, cellY).getCovered())
+		//	{
+		//		(flags.getCell(cellX, cellY).placeFlag());
+		//	}
 
 		window.clear();
 
-		for (int x = 0; x < preset1; x++)
+		/*for (int x = 0; x < preset1; x++)
 		{
 			for (int y = 0; y < preset1; y++)
 			{
@@ -80,15 +84,9 @@ int main(void)
 				window.draw(*(coverGrid.getCell(x, y)));
 
 			}
-		}
-
-		/*for (int x = 0; x < preset2; x++)
-		{
-			for (int y = 0; y < preset2; y++)
-			{
-				window.draw(coverGrid2[x][y]);
-			}
 		}*/
+		
+		menu.display(window);
 
 		window.display();
 	}

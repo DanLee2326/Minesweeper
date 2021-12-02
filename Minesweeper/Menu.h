@@ -6,8 +6,10 @@
 class Menu
 {
 public:
-	void gameMenu();
+	Menu(float x, float y);
+	void display(sf::RenderWindow& window);
 
 private:
-
+	sf::Text options[3];
+	sf::Font style;
 };
